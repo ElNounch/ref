@@ -29,7 +29,6 @@ install:
   - ps: |
       If ( $env:nodejs_version -eq "0.8" ) {
         Install-Product node $env:nodejs_version $env:platform
-#        & npm install -g npm@2.11
       } else {
         Update-NodeJsInstallation (Get-NodeJsLatestBuild $env:nodejs_version) $env:platform
       }
