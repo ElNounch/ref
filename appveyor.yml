@@ -29,12 +29,11 @@ install:
   - ps: |
       If ( $env:nodejs_version -eq "0.8" ) {
         Install-Product node $env:nodejs_version $env:platform
-        npm install npm@1.4.28
       } else {
         Update-NodeJsInstallation (Get-NodeJsLatestBuild $env:nodejs_version) $env:platform
       }
-  # Update npm itself if pre-version 2.x
-#  - ps: If ( (& npm --version) -lt "2." ) {& npm install -g npm@2.11 }
+  # Update npm itself if too old
+  - IF "%nodejs_version%" == "0.8" npm -g install npm@1.4.28
   # Install with dependencies
   - npm install --msvs_version=2013
 
