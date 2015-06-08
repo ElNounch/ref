@@ -25,15 +25,14 @@ install:
   - if %platform% == x64 ( CALL "%VS120COMNTOOLS%\..\..\VC\vcvarsall.bat" amd64 )
   - if %platform% == x86 ( CALL "%VS120COMNTOOLS%\..\..\VC\vcvarsall.bat" amd64_x86 )
   # Get the latest stable version of Node 0.STABLE.latest
+  - set PATH=%APPVEYOR_BUILD_FOLDER%\node_modules\.bin;%APPDATA%\npm;%PATH%
   - ps: |
       If ( $env:nodejs_version -eq "0.8" ) {
         Install-Product node $env:nodejs_version $env:platform
-        npm install -g npm@2.10
+        & npm install -g npm@2.11
       } else {
         Update-NodeJsInstallation (Get-NodeJsLatestBuild $env:nodejs_version) $env:platform
       }
-  # Typical npm stuff.
-  - set PATH=%APPVEYOR_BUILD_FOLDER%\node_modules\.bin;%APPDATA%\npm;%PATH%
   # Update npm itself if pre-version 2.x
 #  - ps: If ( (& npm --version) -lt "2." ) {& npm install -g npm@2.11 }
   # Install with dependencies
