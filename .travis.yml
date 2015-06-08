@@ -17,7 +17,7 @@ matrix:
 
 install:
   - PATH="`npm bin`:`npm bin -g`:$PATH"
-  - if [[ "`node --version`" =~ ^0\.8\. ]]; then npm install -g npm@1.4.28 ; fi
+  - if [[ "`node --version`" =~ ^v0\.8\. ]]; then npm install -g npm@1.4.28 ; fi
   # Install with dependencies
   - npm install
 
