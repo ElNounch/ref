@@ -27,7 +27,7 @@ install:
   # Get the latest stable version of Node 0.STABLE.latest
   - set PATH=%APPVEYOR_BUILD_FOLDER%\node_modules\.bin;%APPDATA%\npm;%PATH%
   - ps: |
-      If ( $env:nodejs_version -eq "0.8" ) {
+      If ( $env:nodejs_version -eq "0.08" ) {
         Install-Product node $env:nodejs_version $env:platform
       } else {
         Update-NodeJsInstallation (Get-NodeJsLatestBuild $env:nodejs_version) $env:platform
